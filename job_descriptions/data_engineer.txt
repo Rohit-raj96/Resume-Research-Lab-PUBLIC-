@@ -1,0 +1,12 @@
+Data Engineer - 3-5 years experience
+
+Requirements:
+- Python/SQL (must)
+- Airflow/Spark (orchestration)
+- AWS/GCP (cloud data platforms)
+- Data modeling (star schema, dimensional modeling)
+
+Nice to have:
+- Kafka/Redis
+- dbt
+- Docker/Kubernetes

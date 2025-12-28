@@ -1,0 +1,44 @@
+Job description
+
+About the Role
+As a Vibe Code specialist, youll handle research, data extraction, and analysis tasks requiring technical precision and strategic problem-solving.
+Conduct advanced web research and data mining using multiple tools to locate and extract information from official sources. Use LLMs and advanced prompts to refine search strategies and validate data accuracy by cross-referencing authoritative sources.
+Perform web scraping and data extraction by navigating complex website structures and multi-level pages (regions companies detailed pages). Handle dynamic content, archived pages, and various HTML formats, and organize extracted data into clean, well-formatted CSV files.
+Write and optimize Python scripts for data processing and analysis using libraries such as pandas, BeautifulSoup, Selenium, and matplotlib. Transform raw data into structured formats (CSV, JSON, tables) and create visualizations when required.
+Carry out data processing and quality assurance by cleaning, validating, and structuring datasets. Ensure data integrity across multiple sources, apply formatting specifications, and run verification steps to maintain high output quality.
+Apply strong problem-solving and task execution skills to break down complex workflows, troubleshoot technical issues independently, and adapt quickly between different domains and task types with minimal supervision.
+Produce clear documentation and high-quality outputs that follow exact requirements for file formats, naming conventions, and data structure. Maintain reproducible workflows and well-organized code.
+How to get started
+Simply apply to this post, qualify, and get the chance to contribute to projects that match your technical skills, on your own schedule. From coding and automation to fine-tuning AI outputs, you ll play a key role in advancing AI capabilities and real-world applications.
+At least 1 year of relevant experience in data analysis, AI automation, data engineering, or software development is desirable.
+Bachelors or Master s Degree in Engineering, Applied Mathematics, Computer Science, or related technical fields is a plus.
+Python proficiency: Demonstrated ability to write functional scripts for data analysis, web scraping, and visualization.
+Web scraping expertise: Experience extracting structured data from websites using tools like BeautifulSoup, Scrapy, Selenium, or similar.
+Data manipulation: Strong skills in cleaning, transforming, and organizing datasets using pandas or equivalent libraries.
+Research capabilities: Ability to locate authoritative sources, official databases, and government datasets.
+Data visualization: Experience creating charts and graphs using matplotlib, seaborn, or similar libraries.
+Hands-on experience with LLMs and AI frameworks to enhance automation and problem-solving.
+Advanced web research skills with ability to find specific, credible data sources.
+Strong attention to detail and commitment to data accuracy.
+Ability to follow complex, multi-step instructions precisely.
+Comfortable working with CSV files, structured data formats, and file specifications.
+Self-directed work ethic with ability to troubleshoot independently.
+English proficiency: Upper-intermediate (B2) or above (required).
+Fully remote role: laptop, stable internet connection, and time availability required.
+Flexibility to switch between tasks and adapt to new methods quickly.
+Willingness to work with detailed, sometimes challenging guidelines.
+Why this freelance opportunity might be a great fit for you
+Work fully remote on your own schedule with just a laptop and stable internet connection.
+Gain hands-on experience in a unique hybrid environment where human expertise and AI agents collaborate seamlessly a distinctive skill set in a rapidly growing field.
+Exceptional performers advance to quality assurance roles or higher-priority project lines with increased compensation. Your performance directly impacts your earning potential.
+Participate in performance-based bonus programs that reward high-quality work and consistent delivery.
+Role: Computer Vision
+Industry Type: IT Services & Consulting
+Department: Data Science & Analytics
+Employment Type: Full Time, Permanent
+Role Category: Data Science & Machine Learning
+Education
+UG: Any Graduate
+PG: Any Postgraduate
+Key Skills
+Computer scienceData analysisAutomationManager Quality AssuranceCodingData processingHTMLManager Quality ControlData miningData extraction

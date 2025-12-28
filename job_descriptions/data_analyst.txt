@@ -1,0 +1,17 @@
+Data Analyst - 2-4 years experience
+
+Requirements:
+- SQL (must have - advanced queries, window functions)
+- Python (pandas, NumPy)
+- Excel/Power BI/Tableau (visualization)
+- Statistics basics (hypothesis testing, A/B testing)
+
+Nice to have:
+- Airflow/DBT for ETL
+- GCP/AWS basics
+- Git version control
+
+Responsibilities:
+- Build dashboards and reports
+- Data cleaning and transformation
+- Ad-hoc analysis and insights

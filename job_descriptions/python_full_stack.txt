@@ -1,0 +1,36 @@
+Job Description: Junior Python Full Stack Developer
+Role Overview
+We are looking for a motivated and talented Python Full Stack Developer (Fresher) to join our engineering team. You will be responsible for developing and maintaining both the front-end and back-end of web applications. You will work closely with senior developers to build scalable software solutions, write clean code, and participate in the full software development life cycle (SDLC).
+
+Key Responsibilities
+Back-End Development: Write robust, testable, and efficient code using Python and frameworks like Django or Flask.
+
+Front-End Development: Build responsive and user-friendly web interfaces using HTML5, CSS3, and JavaScript frameworks (React or Angular).
+
+Database Management: Design and optimize database schemas using PostgreSQL, MySQL, or MongoDB.
+
+API Integration: Create and consume RESTful APIs to connect the front-end with back-end services.
+
+Testing & Debugging: Write unit tests and debug code to ensure high-quality delivery.
+
+Collaboration: Participate in code reviews, daily stand-ups, and contribute to technical documentation.
+
+Required Skills & Qualifications
+Education: Bachelor’s degree in Computer Science, IT, or a related field.
+
+Programming: Strong foundational knowledge of Python and Object-Oriented Programming (OOP) concepts.
+
+Frameworks: Familiarity with Django or Flask for back-end and React.js or Vue.js for front-end.
+
+Web Basics: Proficiency in HTML, CSS, and Bootstrap for responsive design.
+
+Version Control: Basic understanding of Git and GitHub/GitLab.
+
+Tools: Familiarity with VS Code, Postman, and basic Linux commands.
+
+Soft Skills
+Strong analytical and problem-solving abilities.
+
+Eagerness to learn new technologies and adapt to a fast-paced environment.
+
+Excellent verbal and written communication skills.

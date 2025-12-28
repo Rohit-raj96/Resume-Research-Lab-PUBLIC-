@@ -1,0 +1,51 @@
+Job description
+This internship focuses on applying machine learning techniques to solve real-world problems using data-driven approaches. Interns will gain hands-on experience in data preprocessing, feature engineering, model building, and evaluation. The program covers supervised and unsupervised learning, regression, classification, clustering, and model deployment using Python.
+Youll work directly with senior developers, participate in code reviews, and build portfolio-worthy projects that solve actual business problems.
+What Youll Do
+Develop and train machine learning models using Python.
+Build predictive systems for classification, regression, and clustering tasks.
+Debug and optimize models to improve accuracy and reduce overfitting.
+Learn to identify data quality issues and apply preprocessing techniques.
+Integrate ML models into real-world applications via REST APIs.
+Deploy trained models on cloud platforms for scalability and performance.
+Team Collaboration (Daily Scrum Meeting).
+Use Git/GitHub for version control. Work in a simulated Agile team environment.
+Machine Learning Fundamentals
+Understand supervised, unsupervised, and reinforcement learning with real-world use cases.
+Data Preprocessing & Feature Engineering
+Learn to clean, transform, and prepare raw datasets for accurate model training.
+Model Building & Evaluation
+Develop ML models for classification, regression, and clustering, and evaluate them using standard metrics.
+Deep Learning Concepts
+Gain hands-on experience with neural networks, TensorFlow, and PyTorch for advanced ML tasks.
+Ability to understand
+Monolith, Microservices, API, Refactoring, Technical Debt, Boilerplate Code, POC, Hotfix.
+Expertise on
+Unit Test, End-to-End Test (E2E), Code Coverage, UAT (User Acceptance Testing), Sprint, Epic, Containerization, Monitoring & Observability.
+1:1 Weekly Sessions
+Personalized feedback and career guidance from senior developers
+Detailed feedback on your pull requests and architecture
+24/7 Support
+Dedicated Slack channel for instant help
+AI-Powered Spam Email Classifier Python, NLP, Naive Bayes, TensorFlow
+Design a classifier that detects and filters spam emails automatically.
+Preprocess email text using NLP.
+Train Naive Bayes / LSTM models for spam detection.
+Provide probability scores for spam classification.
+Integrate with a mailbox-like interface.
+Personalized Music Recommendation System Python, ML, Spotify API
+Build a recommendation engine that suggests songs based on user listening habits.
+Collect user playlists and song features from Spotify API.
+Implement collaborative & content-based filtering.
+Train ML models for personalized recommendations.
+Deploy as a web app with interactive UI.
+Role: Software Development - Other
+Industry Type: IT Services & Consulting
+Department: Engineering - Software & QA
+Employment Type: Full Time, Permanent
+Role Category: Software Development
+Education
+UG: Any Graduate
+PG: Any Postgraduate
+Key Skills
+Version controlCodingMachine learningAgileDeveloperScrumData qualityInternshipMonitoringPython

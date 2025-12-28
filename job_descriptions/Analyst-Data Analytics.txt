@@ -1,0 +1,57 @@
+Job description
+As a successful candidate, you will be responsible for managing Partner analytics, partner data quality and building data capabilities.
+This is an excellent opportunity to gain deep knowledge of the GMNS business by leading analytics / reporting processes and developing relationships with several GMNS stakeholders.
+ 
+Responsibilities:
+Work in a dynamic, fast changing environment, with attention to detail, great communication skills and success driving results through multi-functional collaboration
+Support the reporting, measurement and analytical foundation for highly evolving acquiring models in payments space
+Support the automation and scaling of analytics using relevant data tools.
+Focus on Data quality by leveraging internal data systems.
+Support the conception and development of data tools / treatments that will drive merchant value and enable greater merchant engagement across channels.
+Understand how GMNS business strategy is enabled through existing analytical solutions and emerging data capabilities that can be built to address key business needs.
+Evaluate current reporting to identify opportunities that will drive automation, eliminate redundancies, and address reporting gaps.
+Critical Factors to Success:
+Solid ability to get results, self-starter.
+Good interpersonal, written, and verbal communication skills
+Ability to influence external partners, colleagues and senior leaders with clear thinking, robust analysis, and strong business intuition.
+Business Outcome
+Create solutions focusing on strategic priorities and driving business
+Effective use of personalization capabilities to optimize business objectives
+Evaluate new advanced analytics techniques to build on existing solutions
+ 
+Leadership Outcomes:
+Put enterprise thinking first, connect the role s agenda to enterprise priorities and balance the needs of customers, partners, colleagues & shareholders.
+Lead with an external perspective, challenge status quo and bring continuous innovation to our existing offerings
+Demonstrate learning agility, make decisions quickly and with the highest level of integrity
+Qualifications:
+Strong analytical skills, ability to interpret data and understand complex processes with the goal to provide meaningful insights to inform business strategy.
+A highly motivated individual with excellent project management skills.
+An individual who is passionate, flexible, and has a positive attitude.
+Able to effectively adapt under changing conditions and prioritize initiatives in a fast-paced complex environment.
+Ability to work with unstructured data.
+Clear and concise with written and verbal communication.
+Strong presentation skills.
+An undergraduate degree; MBA or similar advanced degree preferred.
+Programming expertise using SQL, Python and/or Hive; advanced Microsoft Excel skills essential
+Cornerstone and Google Cloud platform knowledge essential.
+Experience in the merchant business is preferred
+We back you with benefits that support your holistic we'll-being so you can be and deliver your best. This means caring for you and your loved ones physical, financial, and mental health, as we'll as providing the flexibility you need to thrive personally and professionally:
+Competitive base salaries
+Bonus incentives
+Support for financial-we'll-being and retirement
+Comprehensive medical, dental, vision, life insurance, and disability benefits (depending on location)
+Flexible working model with hybrid, onsite or virtual arrangements depending on role and business need
+Generous paid parental leave policies (depending on your location)
+Free access to global on-site we'llness centers staffed with nurses and doctors (depending on location)
+Free and confidential counseling support through our Healthy Minds program
+Career development and training opportunities
+Role: Data Science & Analytics - Other
+Industry Type: Financial Services
+Department: Data Science & Analytics
+Employment Type: Full Time, Permanent
+Role Category: Data Science & Analytics - Other
+Education
+UG: Any Graduate
+PG: MBA/PGDM in Any Specialization
+Key Skills
+Career developmentAutomationExcelProject managementnetwork servicesData qualityBusiness strategySQLPython
