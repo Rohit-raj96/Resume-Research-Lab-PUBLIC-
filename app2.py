@@ -20,6 +20,61 @@ from core.tailor_full import generate_generic_tailored_resume
 
 JD_DIR = Path("job_descriptions")
 
+
+def adapt_batch_results_for_hr(results):
+    """
+    Converts internal batch ranking output into HR-friendly table rows
+    """
+    table_rows = []
+
+    for idx, r in enumerate(results, start=1):
+        score = r.get("score", {})
+        overall = r.get("overall_score", 0)
+
+        # Verdict logic (simple & explainable)
+        if overall >= 75:
+            verdict = "SHORTLIST"
+        elif overall >= 55:
+            verdict = "HOLD"
+        else:
+            verdict = "REJECT"
+        
+        missing = score.get("missing_critical_skills", [])
+        matched = score.get("matched_skills", [])
+
+        if overall >= 75:
+            explanation = "Meets most required skills with strong alignment."
+        elif overall >= 55:
+            explanation = (
+                "Some skill gaps detected: "
+                + ", ".join(missing[:3])
+                if missing
+                else "Moderate match with minor gaps."
+            )
+        else:
+            explanation = (
+                "Major skill gaps: "
+                + ", ".join(missing[:3])
+                if missing
+                else "Low overall match."
+            )
+
+
+        table_rows.append(
+            {
+                "Rank": idx,
+                "Candidate": r.get("filename", "N/A"),
+                "Verdict": verdict,
+                "Match %": f"{overall:.1f}%",
+                "Skills Fit": "Strong" if overall >= 75 else "Partial" if overall >= 55 else "Weak",
+                "Missing Critical Skills": len(score.get("missing_critical_skills", [])),
+                "Explanation": explanation,
+            }
+        )
+
+    return table_rows
+
+
 st.set_page_config(page_title="Resume Research Lab", layout="wide")
 st.title("Resume Processing Research Lab")
 
@@ -534,26 +589,16 @@ with hr_tab:
 
             st.subheader("🏆 Ranked Results")
 
-            table_data = []
-            for i, r in enumerate(results):
-                table_data.append(
-                    {
-                        "Rank": i + 1,
-                        "Resume": r["filename"],
-                        "Score": f"{r['overall_score']:.1f}%",
-                        "Matched Skills": len(r["score"].get("matched_skills", [])),
-                        "Missing Critical": len(
-                            r["score"].get("missing_critical_skills", [])
-                        ),
-                    }
-                )
+        if st.session_state.batch_results:
+            results = st.session_state.batch_results
 
-            st.dataframe(table_data, use_container_width=True)
+            st.subheader("🏆 Candidate Evaluation Summary")
 
-            for i, r in enumerate(results):
-                with st.expander(f"#{i+1} {r['filename']} ({r['overall_score']:.1f}%)"):
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.json(r["parsed"], expanded=False)
-                    with col2:
-                        st.json(r["score"], expanded=False)
+            table_data = adapt_batch_results_for_hr(results)
+
+            st.dataframe(
+                table_data,
+                use_container_width=True,
+                hide_index=True,
+            )
+        

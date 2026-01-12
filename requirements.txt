@@ -18,3 +18,8 @@ rich==13.7.1
 
 
 httpx==0.27.0  # Compatibility
+
+# Backend API
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.9
