@@ -1,9 +1,6 @@
-from groq import Groq
-from core.config import GROQ_API_KEY, GROQ_MODEL
+from core.groq_client import create_chat_completion
 from core.models import ResumeData, ATSScore
 import json
-
-client = Groq(api_key=GROQ_API_KEY)
 
 SYSTEM_PROMPT_SCORING = """
 You are an ATS scoring assistant.
@@ -49,8 +46,7 @@ def build_scoring_user_prompt(resume: ResumeData, jd_text: str) -> str:
 def score_resume_for_jd(resume: ResumeData, jd_text: str) -> ATSScore:
     user_prompt = build_scoring_user_prompt(resume, jd_text)
 
-    resp = client.chat.completions.create(
-        model=GROQ_MODEL,
+    resp = create_chat_completion(
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT_SCORING},
@@ -122,8 +118,7 @@ def score_resume_generic(resume: ResumeData) -> ATSScore:
     """
     user_prompt = build_generic_scoring_user_prompt(resume)
 
-    resp = client.chat.completions.create(
-        model=GROQ_MODEL,
+    resp = create_chat_completion(
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT_GENERIC},

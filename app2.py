@@ -21,6 +21,10 @@ from core.tailor_full import generate_generic_tailored_resume
 JD_DIR = Path("job_descriptions")
 
 
+def show_action_error(action: str, exc: Exception) -> None:
+    st.error(f"{action} failed: {exc}")
+
+
 def adapt_batch_results_for_hr(results):
     """
     Converts internal batch ranking output into HR-friendly table rows
@@ -135,11 +139,15 @@ with candidate_tab:
         with col_left:
             if st.button("Run Parsing", key="cand_single_parse") and st.session_state.uploaded_bytes:
                 with st.spinner("Parsing resume..."):
-                    text = extract_text_from_bytes(st.session_state.uploaded_bytes)
-                    parsed = parse_resume_text(text)
-                    st.session_state.parsed_resume = parsed
-                    st.session_state.ats_score = None
-                st.success("Parsed resume.")
+                    try:
+                        text = extract_text_from_bytes(st.session_state.uploaded_bytes)
+                        parsed = parse_resume_text(text)
+                    except Exception as exc:
+                        show_action_error("Parsing", exc)
+                    else:
+                        st.session_state.parsed_resume = parsed
+                        st.session_state.ats_score = None
+                        st.success("Parsed resume.")
             if st.session_state.parsed_resume is not None:
                 st.json(st.session_state.parsed_resume.model_dump(), expanded=False)
 
@@ -177,12 +185,16 @@ with candidate_tab:
                     st.error("Select or paste a Job Description first.")
                 else:
                     with st.spinner("Scoring resume against JD..."):
-                        score = score_resume_for_jd(
-                            st.session_state.parsed_resume,
-                            jd_text_single,
-                        )
-                        st.session_state.ats_score = score
-                    st.success("Scoring complete.")
+                        try:
+                            score = score_resume_for_jd(
+                                st.session_state.parsed_resume,
+                                jd_text_single,
+                            )
+                        except Exception as exc:
+                            show_action_error("ATS scoring", exc)
+                        else:
+                            st.session_state.ats_score = score
+                            st.success("Scoring complete.")
 
             if st.session_state.ats_score is not None:
                 st.json(st.session_state.ats_score.model_dump(), expanded=False)
@@ -245,9 +257,13 @@ with candidate_tab:
                     st.error("Select at least one JD file or paste at least one JD block.")
                 else:
                     with st.spinner("Scoring resume against multiple JDs..."):
-                        results = score_resume_against_multiple_jds(parsed, jd_items)
-                    st.session_state.multi_jd_results = results
-                    st.success(f"Scored against {len(results)} job descriptions.")
+                        try:
+                            results = score_resume_against_multiple_jds(parsed, jd_items)
+                        except Exception as exc:
+                            show_action_error("Multi-JD scoring", exc)
+                        else:
+                            st.session_state.multi_jd_results = results
+                            st.success(f"Scored against {len(results)} job descriptions.")
 
             if st.session_state.multi_jd_results:
                 results = st.session_state.multi_jd_results
@@ -319,15 +335,19 @@ with candidate_tab:
                             key=tailor_key,
                         ):
                             with st.spinner("Generating full tailored resume..."):
-                                tailored = generate_full_tailored_resume(
-                                    parsed,
-                                    score,
-                                    jd_text_for_this,
-                                )
-                            st.session_state.tailored_resumes[label] = tailored
-                            st.success(
-                                "Tailored resume generated. You can edit before downloading."
-                            )
+                                try:
+                                    tailored = generate_full_tailored_resume(
+                                        parsed,
+                                        score,
+                                        jd_text_for_this,
+                                    )
+                                except Exception as exc:
+                                    show_action_error("Tailored resume generation", exc)
+                                else:
+                                    st.session_state.tailored_resumes[label] = tailored
+                                    st.success(
+                                        "Tailored resume generated. You can edit before downloading."
+                                    )
 
                         if label in st.session_state.tailored_resumes:
                             edited = st.text_area(
@@ -379,12 +399,16 @@ with candidate_tab:
         with col_q1:
             if st.button("Run Parsing", key="cand_quick_parse") and st.session_state.quick_uploaded_bytes:
                 with st.spinner("Parsing resume..."):
-                    text = extract_text_from_bytes(st.session_state.quick_uploaded_bytes)
-                    parsed = parse_resume_text(text)
-                    st.session_state.quick_parsed_resume = parsed
-                    st.session_state.quick_ats_score = None
-                    st.session_state.quick_tailored_resume = ""
-                st.success("Parsed resume.")
+                    try:
+                        text = extract_text_from_bytes(st.session_state.quick_uploaded_bytes)
+                        parsed = parse_resume_text(text)
+                    except Exception as exc:
+                        show_action_error("Parsing", exc)
+                    else:
+                        st.session_state.quick_parsed_resume = parsed
+                        st.session_state.quick_ats_score = None
+                        st.session_state.quick_tailored_resume = ""
+                        st.success("Parsed resume.")
 
             if st.session_state.quick_parsed_resume is not None:
                 st.json(st.session_state.quick_parsed_resume.model_dump(), expanded=False)
@@ -395,10 +419,14 @@ with candidate_tab:
                     st.error("Parse the resume first.")
                 else:
                     with st.spinner("Scoring resume for generic ATS readiness..."):
-                        score = score_resume_generic(st.session_state.quick_parsed_resume)
-                        st.session_state.quick_ats_score = score
-                        st.session_state.quick_tailored_resume = ""
-                    st.success("Scoring complete.")
+                        try:
+                            score = score_resume_generic(st.session_state.quick_parsed_resume)
+                        except Exception as exc:
+                            show_action_error("ATS quality check", exc)
+                        else:
+                            st.session_state.quick_ats_score = score
+                            st.session_state.quick_tailored_resume = ""
+                            st.success("Scoring complete.")
 
             if st.session_state.quick_ats_score is not None:
                 st.json(st.session_state.quick_ats_score.model_dump(), expanded=False)
@@ -416,13 +444,17 @@ with candidate_tab:
                         st.error("Please enter a target role first.")
                     else:
                         with st.spinner("Generating tailored resume..."):
-                            tailored = generate_generic_tailored_resume(
-                                st.session_state.quick_parsed_resume,
-                                st.session_state.quick_ats_score,
-                                target_role.strip(),
-                            )
-                        st.session_state.quick_tailored_resume = tailored
-                        st.success("Tailored resume generated. You can edit below before download.")
+                            try:
+                                tailored = generate_generic_tailored_resume(
+                                    st.session_state.quick_parsed_resume,
+                                    st.session_state.quick_ats_score,
+                                    target_role.strip(),
+                                )
+                            except Exception as exc:
+                                show_action_error("Tailored resume generation", exc)
+                            else:
+                                st.session_state.quick_tailored_resume = tailored
+                                st.success("Tailored resume generated. You can edit below before download.")
 
                 if st.session_state.quick_tailored_resume:
                     edited = st.text_area(
@@ -484,11 +516,15 @@ with hr_tab:
         with col_l:
             if st.button("Run Parsing", key="hr_single_parse") and st.session_state.hr_uploaded_bytes:
                 with st.spinner("Parsing resume..."):
-                    text = extract_text_from_bytes(st.session_state.hr_uploaded_bytes)
-                    parsed = parse_resume_text(text)
-                    st.session_state.hr_parsed_resume = parsed
-                    st.session_state.hr_ats_score = None
-                st.success("Parsed resume.")
+                    try:
+                        text = extract_text_from_bytes(st.session_state.hr_uploaded_bytes)
+                        parsed = parse_resume_text(text)
+                    except Exception as exc:
+                        show_action_error("Parsing", exc)
+                    else:
+                        st.session_state.hr_parsed_resume = parsed
+                        st.session_state.hr_ats_score = None
+                        st.success("Parsed resume.")
             if st.session_state.hr_parsed_resume is not None:
                 st.json(st.session_state.hr_parsed_resume.model_dump(), expanded=False)
 
@@ -524,12 +560,16 @@ with hr_tab:
                     st.error("Select or paste a Job Description first.")
                 else:
                     with st.spinner("Scoring resume against JD..."):
-                        score = score_resume_for_jd(
-                            st.session_state.hr_parsed_resume,
-                            jd_text_hr,
-                        )
-                        st.session_state.hr_ats_score = score
-                    st.success("Scoring complete.")
+                        try:
+                            score = score_resume_for_jd(
+                                st.session_state.hr_parsed_resume,
+                                jd_text_hr,
+                            )
+                        except Exception as exc:
+                            show_action_error("ATS scoring", exc)
+                        else:
+                            st.session_state.hr_ats_score = score
+                            st.success("Scoring complete.")
 
             if st.session_state.hr_ats_score is not None:
                 st.json(st.session_state.hr_ats_score.model_dump(), expanded=False)
@@ -574,15 +614,19 @@ with hr_tab:
 
         if batch_files and jd_text_batch:
             if st.button("🚀 RANK ALL", type="primary", key="hr_batch_rank_all"):
-                file_bytes_list = [f.read() for f in batch_files]
-                filenames = [f.name for f in batch_files]
-                ranked_results = process_batch_resumes(
-                    file_bytes_list,
-                    jd_text_batch,
-                    filenames,
-                )
-                st.session_state.batch_results = ranked_results
-                st.success(f"🎉 Ranked {len(ranked_results)} resumes!")
+                try:
+                    file_bytes_list = [f.read() for f in batch_files]
+                    filenames = [f.name for f in batch_files]
+                    ranked_results = process_batch_resumes(
+                        file_bytes_list,
+                        jd_text_batch,
+                        filenames,
+                    )
+                except Exception as exc:
+                    show_action_error("Batch ranking", exc)
+                else:
+                    st.session_state.batch_results = ranked_results
+                    st.success(f"🎉 Ranked {len(ranked_results)} resumes!")
 
         if st.session_state.batch_results:
             results = st.session_state.batch_results

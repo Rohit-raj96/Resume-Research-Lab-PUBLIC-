@@ -1,10 +1,7 @@
 # core/tailor_full.py
 import json
-from groq import Groq
-from core.config import GROQ_API_KEY, GROQ_MODEL
+from core.groq_client import create_chat_completion
 from core.models import ResumeData, ATSScore
-
-client = Groq(api_key=GROQ_API_KEY)
 
 SYSTEM_PROMPT_TAILOR_FULL = """
 You are a professional resume writer and ATS optimization expert.
@@ -98,8 +95,7 @@ def generate_full_tailored_resume(
     """Return a full plain-text tailored resume for this JD."""
     prompt = build_tailor_full_prompt(resume, score, jd_text)
 
-    resp = client.chat.completions.create(
-        model=GROQ_MODEL,
+    resp = create_chat_completion(
         response_format={"type": "text"},  # plain text
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT_TAILOR_FULL},
@@ -189,8 +185,7 @@ def generate_generic_tailored_resume(
     """
     prompt = build_tailor_generic_prompt(resume, score, target_role)
 
-    resp = client.chat.completions.create(
-        model=GROQ_MODEL,
+    resp = create_chat_completion(
         response_format={"type": "text"},
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT_TAILOR_GENERIC},

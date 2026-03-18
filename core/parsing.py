@@ -1,8 +1,6 @@
-from groq import Groq
-from core.config import GROQ_API_KEY, GROQ_MODEL
+from core.groq_client import create_chat_completion
 from core.models import ResumeData
 import json
-client = Groq(api_key=GROQ_API_KEY)
 
 SYSTEM_PROMPT = """
 You are a professional ATS-style resume parser.
@@ -67,8 +65,7 @@ def parse_resume_text(resume_text: str) -> ResumeData:
     trimmed = resume_text[:8000]
     user_prompt = build_parsing_user_prompt(trimmed)
 
-    resp = client.chat.completions.create(
-        model=GROQ_MODEL,
+    resp = create_chat_completion(
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
