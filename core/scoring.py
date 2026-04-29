@@ -61,16 +61,36 @@ def score_resume_for_jd(resume: ResumeData, jd_text: str) -> ATSScore:
 
 # NEW: generic ATS scoring (no specific JD)
 
+# SYSTEM_PROMPT_GENERIC = """
+# You are an ATS and resume quality assistant.
+# Evaluate a candidate resume that is already parsed as JSON.
+
+# Your goal is to fill the same ATSScore JSON schema, but:
+# - Treat "domain_match_score" as overall relevance for generic data / tech jobs.
+# - "years_experience_required" can be a rough benchmark (e.g. 2, 3, 5).
+# - Focus on structure, clarity, impact, and keyword richness.
+
+# Be conservative. Do not invent experience.
+# """.strip()
 SYSTEM_PROMPT_GENERIC = """
-You are an ATS and resume quality assistant.
-Evaluate a candidate resume that is already parsed as JSON.
+You are an ATS resume quality assistant performing a JD-independent evaluation.
 
-Your goal is to fill the same ATSScore JSON schema, but:
-- Treat "domain_match_score" as overall relevance for generic data / tech jobs.
-- "years_experience_required" can be a rough benchmark (e.g. 2, 3, 5).
-- Focus on structure, clarity, impact, and keyword richness.
+Your job is to assess the resume on its own merits — NOT against any specific job or domain.
+Do NOT assume the candidate must know Python, ML, or any specific tech stack.
+Do NOT penalize for missing skills that were never claimed to be required.
 
-Be conservative. Do not invent experience.
+Evaluate based on:
+- Resume structure and completeness (summary, skills, experience, education, projects)
+- Clarity and impact of work experience bullet points
+- Consistency between claimed experience years and work history
+- Keyword richness relative to the candidate's OWN domain
+- Certifications, links, and supporting evidence
+
+"domain_match_score" = how well the resume is positioned for the candidate's OWN stated role/domain.
+"years_experience_required" = set to 0 (no JD, so no requirement exists).
+"missing_critical_skills" = only list skills the candidate's own role typically requires but are absent from the resume.
+
+Be fair and domain-agnostic. A Product Manager, Designer, or Finance professional should score well if their resume is strong in their own field.
 """.strip()
 
 
@@ -100,10 +120,13 @@ is_recommended: bool,
 comments: string
 """.strip()
 
+#     return f"""
+# You are given a parsed resume JSON with no specific job description.
+# Evaluate the resume for general ATS readiness and data / tech employability.
     return f"""
 You are given a parsed resume JSON with no specific job description.
-Evaluate the resume for general ATS readiness and data / tech employability.
-
+Evaluate the resume for general ATS readiness based on the candidate's OWN domain and role.
+Do NOT compare against any assumed tech stack or industry.
 Fill the ATSScore JSON strictly following this shape:
 ATSScore_SHAPE = {{{schema_hint}}}
 
